@@ -37,29 +37,9 @@ class A11yDeveloperToolsRunner {
             /^See (.*) for more information\.$/
         );
 
-        function selectorToContext(selector) {
-          var context = null;
-          if (selector) {
-            var domElement = document.querySelector(selector);
-            if (domElement instanceof window.HTMLElement) {
-              try {
-                context = htmlContext(domElement, {
-                  maxLength: 255,
-                });
-              } catch (e) {
-                console.error(e);
-              }
-            }
-          }
-          return {
-            selector: selector,
-            context: context,
-          };
-        }
-
         var ret = {
           code: matches[1],
-          elements: lines.map(selectorToContext),
+          elements: lines,
           msg: matches[2],
           helpUrl: urlMatches[1],
         };
